@@ -105,7 +105,8 @@
 }
 
 @theme inline {
-  --font-sans: 'DM Sans', sans-serif;
+  /* Fallback to Manrope (loaded above) when local Neue Haas files are missing (e.g. production) */
+  --font-sans: 'Neue Haas Grotesque', 'Manrope', sans-serif;
   --animate-marquee: marquee 25s linear infinite;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
