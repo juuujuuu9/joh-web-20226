@@ -1,0 +1,44 @@
+---
+import { Button } from './ui/button';
+
+interface Props {
+	marqueeItems?: string[];
+}
+
+const { marqueeItems = [
+	'Mobile Optimization',
+	'Performance Optimization (Lighthouse 90+)',
+	'Headless Architecture & UI Engineering',
+	'WCAG 2.1 Accessibility',
+	'E-commerce Solutions',
+] } = Astro.props;
+---
+
+<!-- Marquee: full width, dark bg, light text -->
+<div class="w-full overflow-hidden bg-primary-black text-white dark:bg-white dark:text-primary-black" aria-hidden="true">
+	<div class="inline-flex py-2.5 text-sm font-medium uppercase tracking-wider whitespace-nowrap animate-marquee">
+		{marqueeItems.map((item) => (
+			<span class="pr-8">{item}</span>
+		))}
+		{/* Duplicate for seamless loop */}
+		{marqueeItems.map((item) => (
+			<span class="pr-8">{item}</span>
+		))}
+	</div>
+</div>
+<header class="mb-4 flex items-center justify-between px-6 lg:px-[6.5rem]">
+	<a href="/">
+		<img src="/jh-logo.svg" alt="Logo" class="h-16 w-auto max-w-[322px] object-contain dark:brightness-0 dark:invert" />
+	</a>
+	<nav class="flex flex-wrap items-center gap-4">
+		<Button client:load asChild variant="outline" className="border-primary-black px-4 py-2 text-sm uppercase hover:bg-primary-black hover:text-white dark:border-white/30 dark:text-white dark:hover:bg-white dark:hover:text-primary-black">
+			<a href="/about">About</a>
+		</Button>
+		<Button client:load asChild variant="outline" className="border-primary-black px-4 py-2 text-sm uppercase hover:bg-primary-black hover:text-white dark:border-white/30 dark:text-white dark:hover:bg-white dark:hover:text-primary-black">
+			<a href="/work">Work</a>
+		</Button>
+		<Button client:load asChild variant="outline" className="border-primary-black px-4 py-2 text-sm uppercase hover:bg-primary-black hover:text-white dark:border-white/30 dark:text-white dark:hover:bg-white dark:hover:text-primary-black">
+			<a href="/contact">Contact</a>
+		</Button>
+	</nav>
+</header>

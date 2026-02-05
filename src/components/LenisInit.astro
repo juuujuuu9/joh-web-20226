@@ -1,0 +1,41 @@
+---
+/**
+ * Lenis smooth scroll — enabled only on desktop (lg: 1024px+).
+ * Import CSS here so it's included in the page.
+ */
+import 'lenis/dist/lenis.css';
+---
+
+<script>
+	import Lenis from 'lenis';
+
+	const LG_BREAKPOINT = 1024;
+
+	function initLenis(): Lenis | null {
+		if (typeof window === 'undefined' || window.innerWidth < LG_BREAKPOINT) return null;
+		const lenis = new Lenis({ autoRaf: true, anchors: true });
+		return lenis;
+	}
+
+	function destroyLenis(lenis: Lenis | null): void {
+		if (lenis) {
+			lenis.destroy();
+		}
+	}
+
+	let lenisInstance: Lenis | null = null;
+
+	function checkAndToggle(): void {
+		const isDesktop = window.innerWidth >= LG_BREAKPOINT;
+		if (isDesktop && !lenisInstance) {
+			lenisInstance = initLenis();
+		} else if (!isDesktop && lenisInstance) {
+			destroyLenis(lenisInstance);
+			lenisInstance = null;
+		}
+	}
+
+	checkAndToggle();
+	const mq = window.matchMedia(`(min-width: ${LG_BREAKPOINT}px)`);
+	mq.addEventListener('change', checkAndToggle);
+</script>

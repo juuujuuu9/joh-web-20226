@@ -1,0 +1,136 @@
+---
+import '../styles/global.css';
+import favicon from '../assets/favicon.svg';
+import { getCollection } from 'astro:content';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import LenisInit from '../components/LenisInit.astro';
+
+const entries = await getCollection('caseStudies', ({ data }) => data.draft !== true);
+const caseStudies = entries.map((entry) => ({
+  id: entry.id,
+  title: entry.data.title,
+  tagline: entry.data.tagline,
+  tags: entry.data.servicesProvided,
+  date: entry.data.timeline,
+  link: `/case-studies/${entry.id}`,
+  image: entry.data.heroImage,
+  logoIcon: entry.data.logoIcon,
+}));
+---
+
+<html lang="en" class="font-sans">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href={favicon.src} />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Work — Thoughtform Worldwide</title>
+		<script is:inline>
+			const stored = localStorage.getItem('theme');
+			const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+			if (stored === 'dark' || (!stored && prefersDark)) document.documentElement.classList.add('dark');
+			else document.documentElement.classList.remove('dark');
+		</script>
+	</head>
+	<body class="flex min-h-dvh flex-col bg-light-bg pb-16 text-primary-black antialiased dark:bg-primary-black dark:text-white">
+		<Header />
+		<div class="relative mx-auto w-full flex-1 px-6 pt-8 pb-2 lg:px-[6.5rem]">
+
+			<main class="flex w-full min-w-0 flex-1 flex-col">
+				<!-- Section 1: full width, left-aligned -->
+				<div class="w-full">
+					<h1 class="font-display flex flex-col text-[150px] font-normal uppercase leading-[0.8]">
+						<span>WORK</span>
+					</h1>
+					<p class="mt-0 max-w-2xl text-lg leading-relaxed text-primary-black/80 font-medium dark:text-white/80">
+						<em>I align with forward-thinking businesses who are transforming industries. From startups to established businesses, I create tailored web solutions to help them scale, attract customers, and thrive in their markets.</em>
+					</p>
+				</div>
+
+				<!-- Selected Work: project table -->
+				<section class="w-full max-w-6xl pb-24" aria-labelledby="work-heading" style="padding-top: 100px">
+					<h2 id="work-heading" class="mb-8 font-bold text-[2rem] leading-tight text-primary-black dark:text-white">
+						Case Studies
+					</h2>
+					<div>
+						{caseStudies.map((item) => (
+							<div class="group relative border-b border-border py-10 transition-all hover:bg-vcr-blue/10 px-4 -mx-4 first:pt-10 dark:hover:bg-vcr-blue/20">
+								<!-- Floating preview image -->
+								<div class="pointer-events-none absolute left-1/2 top-0 z-50 w-64 opacity-0 transition-all duration-300 ease-out -translate-x-1/2 group-hover:-top-32 group-hover:opacity-100 group-hover:translate-y-[-10px]">
+									<div class="overflow-hidden border border-border bg-card dark:border-border dark:bg-card">
+										<img
+											src={item.image}
+											alt={`${item.title} preview`}
+											class="h-full w-full object-cover"
+											width="256"
+											height="160"
+											loading="lazy"
+										/>
+									</div>
+								</div>
+
+								<div class="flex flex-col md:flex-row md:items-start justify-between gap-6">
+									<div class="flex gap-6 items-start">
+										<div class="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden" aria-hidden="true">
+											{item.logoIcon ? (
+												<img src={item.logoIcon} alt="" class="h-full w-full object-contain" width="64" height="64" />
+											) : (
+												<span class="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Logo</span>
+											)}
+										</div>
+										<div>
+											<h3 class="text-2xl font-bold tracking-tight text-primary-black dark:text-white transition-colors group-hover:text-vcr-blue">
+												{item.title}
+											</h3>
+											{item.tagline && (
+												<p class="mt-1.5 text-sm text-primary-black/70 dark:text-white/70">
+													{item.tagline}
+												</p>
+											)}
+											<div class="mt-3 flex flex-wrap gap-2">
+												{item.tags.map((tag) => (
+													<span class="rounded-full border border-border bg-card px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground dark:bg-card dark:border-border">
+														{tag}
+													</span>
+												))}
+											</div>
+										</div>
+									</div>
+									<div class="flex items-start gap-10">
+										<div class="hidden text-right lg:block">
+											<p class="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Developed</p>
+											<p class="font-mono text-sm font-medium text-muted-foreground whitespace-nowrap">{item.date}</p>
+										</div>
+										<a
+											href={item.link}
+											class="group/link flex items-center gap-2 font-bold text-primary-black dark:text-white transition-all"
+										>
+											<span class="border-b-2 border-primary-black pb-1 dark:border-white group-hover/link:border-vcr-blue group-hover/link:text-vcr-blue">VISIT</span>
+											<svg class="h-4 w-4 transition-transform group-hover/link:text-vcr-blue group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+										</a>
+									</div>
+								</div>
+							</div>
+						))}
+					</div>
+				</section>
+			</main>
+
+			<!-- 3D hand: bottom-right 2/3 of viewport, drag to rotate -->
+			<!--
+			<div
+				class="pointer-events-none fixed bottom-0 right-0 z-0 h-[66.67dvh] w-[66.67vw] min-w-[280px]"
+				aria-hidden="true"
+			>
+				<div class="pointer-events-auto h-full w-full">
+					<HandModel client:load />
+				</div>
+			</div>
+			-->
+		</div>
+		<Footer />
+		<LenisInit />
+	</body>
+</html>
