@@ -7,7 +7,7 @@ import Footer from '../components/Footer.astro';
 import LenisInit from '../components/LenisInit.astro';
 ---
 
-<html lang="en" class="h-[100dvh] font-sans">
+<html lang="en" class="min-h-dvh font-sans sm:h-[100dvh]">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href={favicon.src} />
@@ -22,7 +22,7 @@ import LenisInit from '../components/LenisInit.astro';
 			else document.documentElement.classList.remove('dark');
 		</script>
 	</head>
-	<body class="flex min-h-[100dvh] flex-col bg-light-bg pb-16 text-primary-black antialiased dark:bg-primary-black dark:text-white">
+	<body class="flex min-h-dvh flex-col bg-light-bg pb-0 text-primary-black antialiased dark:bg-primary-black dark:text-white sm:pb-16">
 		<Header />
 		<div class="relative mx-auto flex min-h-0 w-full flex-1 flex-col px-6 pt-8 pb-10 lg:px-[6.5rem]">
 

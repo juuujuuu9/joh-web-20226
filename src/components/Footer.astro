@@ -4,8 +4,8 @@ import { Button } from './ui/button';
 /** No props. Footer content is shared across pages. */
 ---
 
-<footer class="fixed bottom-0 left-0 right-0 z-10 flex h-16 flex-col items-center justify-center gap-3 border-t border-primary-black/10 bg-light-bg px-6 dark:border-white/10 dark:bg-primary-black sm:flex-row sm:justify-between">
-	<div class="flex flex-wrap gap-x-8 gap-y-2">
+<footer class="static flex min-h-16 flex-col items-center justify-center gap-3 border-t border-primary-black/10 bg-light-bg px-6 py-4 dark:border-white/10 dark:bg-primary-black sm:fixed sm:bottom-0 sm:left-0 sm:right-0 sm:z-10 sm:h-16 sm:flex-row sm:justify-between sm:py-0">
+	<div class="flex w-full flex-wrap gap-x-8 gap-y-2 border-b border-primary-black/10 pb-3 dark:border-white/10 sm:w-auto sm:border-0 sm:pb-0">
 		<a href="mailto:julian@thoughtform.world" class="flex items-center gap-1 hover:underline dark:text-white">
 			<span>→</span>
 			julian@thoughtform.world
@@ -15,16 +15,18 @@ import { Button } from './ui/button';
 			Los Angeles, CA
 		</span>
 	</div>
-	<div class="flex flex-wrap items-center gap-6">
-		<Button client:load asChild variant="outline" className="border-primary-black px-4 py-2 text-sm uppercase hover:bg-primary-black hover:text-white dark:border-white/30 dark:text-white dark:hover:bg-white dark:hover:text-primary-black">
-			<a href="https://www.linkedin.com/in/julian-hardee-creator/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-		</Button>
-		<Button client:load asChild variant="outline" className="border-primary-black px-4 py-2 text-sm uppercase hover:bg-primary-black hover:text-white dark:border-white/30 dark:text-white dark:hover:bg-white dark:hover:text-primary-black">
-			<a href="https://github.com/juuujuuu9" target="_blank" rel="noopener noreferrer">GitHub</a>
-		</Button>
-		<Button client:load asChild variant="outline" className="border-primary-black px-4 py-2 text-sm uppercase hover:bg-primary-black hover:text-white dark:border-white/30 dark:text-white dark:hover:bg-white dark:hover:text-primary-black">
-			<a href="https://www.thoughtform.world" target="_blank" rel="noopener noreferrer">Corporate</a>
-		</Button>
+	<div class="flex w-full flex-shrink-0 flex-wrap items-center justify-between gap-6 self-stretch sm:w-auto sm:flex-nowrap">
+		<div class="flex flex-wrap items-center gap-6">
+			<Button client:load asChild variant="outline" className="border-primary-black px-4 py-2 text-sm uppercase hover:bg-primary-black hover:text-white dark:border-white/30 dark:text-white dark:hover:bg-white dark:hover:text-primary-black">
+				<a href="https://www.linkedin.com/in/julian-hardee-creator/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+			</Button>
+			<Button client:load asChild variant="outline" className="border-primary-black px-4 py-2 text-sm uppercase hover:bg-primary-black hover:text-white dark:border-white/30 dark:text-white dark:hover:bg-white dark:hover:text-primary-black">
+				<a href="https://github.com/juuujuuu9" target="_blank" rel="noopener noreferrer">GitHub</a>
+			</Button>
+			<Button client:load asChild variant="outline" className="border-primary-black px-4 py-2 text-sm uppercase hover:bg-primary-black hover:text-white dark:border-white/30 dark:text-white dark:hover:bg-white dark:hover:text-primary-black">
+				<a href="https://www.thoughtform.world" target="_blank" rel="noopener noreferrer">Corporate</a>
+			</Button>
+		</div>
 		<button
 			type="button"
 			id="theme-toggle"
