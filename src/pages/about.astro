@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import favicon from '../assets/favicon.svg';
+import cvPdf from '../assets/Julian Hardee - 2026.pdf';
 import { HandModel } from '../components/HandModel';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -107,7 +108,8 @@ import LenisInit from '../components/LenisInit.astro';
 							Check out my work
 						</a>
 						<a
-							href="/cv.pdf"
+							href={cvPdf}
+							download="Julian-Hardee-2026.pdf"
 							class="inline-block rounded-md border border-primary-black px-6 py-3 text-sm font-medium text-primary-black transition-colors hover:bg-primary-black/5 dark:border-white dark:text-white dark:hover:bg-white/10"
 						>
 							Download CV
