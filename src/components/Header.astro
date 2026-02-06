@@ -12,6 +12,12 @@ const { marqueeItems = [
 	'WCAG 2.1 Accessibility',
 	'E-commerce Solutions',
 ] } = Astro.props;
+
+const navLinks = [
+	{ href: '/about', label: 'About' },
+	{ href: '/work', label: 'Work' },
+	{ href: '/contact', label: 'Contact' },
+];
 ---
 
 <!-- Marquee: full width, dark bg, light text -->
@@ -26,19 +32,127 @@ const { marqueeItems = [
 		))}
 	</div>
 </div>
-<header class="mb-4 flex items-center justify-between px-6 lg:px-[6.5rem]">
+<header class="mb-4 flex items-center justify-between px-4 lg:px-[6.5rem]">
 	<a href="/">
 		<img src="/jh-logo.svg" alt="Logo" class="h-16 w-auto max-w-[322px] object-contain dark:brightness-0 dark:invert" />
 	</a>
-	<nav class="flex flex-wrap items-center gap-4">
-		<Button client:load asChild variant="outline" className="border-primary-black px-4 py-2 text-sm uppercase hover:bg-primary-black hover:text-white dark:border-white/30 dark:text-white dark:hover:bg-white dark:hover:text-primary-black">
-			<a href="/about">About</a>
-		</Button>
-		<Button client:load asChild variant="outline" className="border-primary-black px-4 py-2 text-sm uppercase hover:bg-primary-black hover:text-white dark:border-white/30 dark:text-white dark:hover:bg-white dark:hover:text-primary-black">
-			<a href="/work">Work</a>
-		</Button>
-		<Button client:load asChild variant="outline" className="border-primary-black px-4 py-2 text-sm uppercase hover:bg-primary-black hover:text-white dark:border-white/30 dark:text-white dark:hover:bg-white dark:hover:text-primary-black">
-			<a href="/contact">Contact</a>
-		</Button>
+
+	<!-- Desktop nav -->
+	<nav class="hidden lg:flex flex-wrap items-center gap-4">
+		{navLinks.map((link) => (
+			<Button client:load asChild variant="outline" className="border-primary-black px-4 py-2 text-sm uppercase hover:bg-primary-black hover:text-white dark:border-white/30 dark:text-white dark:hover:bg-white dark:hover:text-primary-black">
+				<a href={link.href}>{link.label}</a>
+			</Button>
+		))}
 	</nav>
+
+	<!-- Mobile hamburger -->
+	<button
+		id="menu-toggle"
+		type="button"
+		class="lg:hidden flex items-center justify-center w-12 h-12 -mr-2 text-primary-black dark:text-white"
+		aria-label="Open menu"
+		aria-expanded="false"
+		aria-controls="mobile-menu"
+	>
+		<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+		</svg>
+	</button>
 </header>
+
+<!-- Mobile tray menu: full screen, slides in from right -->
+<div
+	id="mobile-menu"
+	class="fixed inset-0 z-50 bg-light-bg dark:bg-primary-black text-primary-black dark:text-white transform translate-x-full transition-transform duration-300 ease-out lg:hidden"
+	aria-hidden="true"
+>
+	<div class="flex flex-col h-full px-4 pt-4 pb-4">
+		<!-- Close button: same position as hamburger (top-right) -->
+		<div class="flex justify-end">
+			<button
+				id="menu-close"
+				type="button"
+				class="flex items-center justify-center w-12 h-12 -mr-2"
+				aria-label="Close menu"
+			>
+				<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+				</svg>
+			</button>
+		</div>
+		<!-- Nav links beneath close button -->
+		<nav class="flex flex-col gap-4 mt-4 items-end">
+			{navLinks.map((link) => (
+				<a
+					href={link.href}
+					class="text-base font-medium hover:underline underline-offset-4"
+					data-menu-link
+				>
+					{link.label}
+				</a>
+			))}
+		</nav>
+		<!-- Social/email links at bottom of tray -->
+		<div class="mt-auto flex flex-col gap-4 items-end">
+			<a
+				href="https://www.linkedin.com/in/julian-hardee-creator/"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="text-base font-medium hover:underline underline-offset-4"
+				data-menu-link
+			>
+				LinkedIn
+			</a>
+			<a
+				href="https://github.com/juuujuuu9"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="text-base font-medium hover:underline underline-offset-4"
+				data-menu-link
+			>
+				GitHub
+			</a>
+<a
+					href="mailto:julian@thoughtform.world"
+					class="flex items-center gap-1 text-base font-medium hover:underline underline-offset-4"
+					data-menu-link
+				>
+					<span>→</span>
+					julian@thoughtform.world
+				</a>
+		</div>
+	</div>
+</div>
+
+<script>
+	const toggle = document.getElementById('menu-toggle');
+	const menu = document.getElementById('mobile-menu');
+	const closeBtn = document.getElementById('menu-close');
+	const links = document.querySelectorAll('[data-menu-link]');
+
+	function openMenu() {
+		menu?.classList.remove('translate-x-full');
+		menu?.setAttribute('aria-hidden', 'false');
+		toggle?.setAttribute('aria-expanded', 'true');
+		document.body.style.overflow = 'hidden';
+	}
+
+	function closeMenu() {
+		menu?.classList.add('translate-x-full');
+		menu?.setAttribute('aria-hidden', 'true');
+		toggle?.setAttribute('aria-expanded', 'false');
+		document.body.style.overflow = '';
+	}
+
+	toggle?.addEventListener('click', openMenu);
+	closeBtn?.addEventListener('click', closeMenu);
+	links.forEach((link) => link.addEventListener('click', closeMenu));
+
+	// Close on escape
+	document.addEventListener('keydown', (e) => {
+		if (e.key === 'Escape' && menu?.classList.contains('translate-x-full') === false) {
+			closeMenu();
+		}
+	});
+</script>
