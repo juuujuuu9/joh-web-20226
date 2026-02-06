@@ -1,14 +1,15 @@
 ---
 import { Button } from './ui/button';
 
-/** No props. Footer content is shared across pages. */
+const contactEmail = import.meta.env.RESEND_TO_EMAIL || '';
+const siteUrl = import.meta.env.SITE_URL || '';
 ---
 
 <footer class="static flex min-h-16 flex-col items-center justify-center gap-3 border-t border-primary-black/10 bg-light-bg px-4 py-4 dark:border-white/10 dark:bg-primary-black sm:fixed sm:bottom-0 sm:left-0 sm:right-0 sm:z-10 sm:h-16 sm:flex-row sm:justify-between sm:py-0">
 	<div class="flex w-full flex-wrap gap-x-8 gap-y-2 border-b border-primary-black/10 pb-3 dark:border-white/10 sm:w-auto sm:border-0 sm:pb-0">
-		<a href="mailto:julian@thoughtform.world" class="flex items-center gap-1 hover:underline dark:text-white">
+		<a href={contactEmail ? `mailto:${contactEmail}` : '#'} class="flex items-center gap-1 hover:underline dark:text-white">
 			<span>→</span>
-			julian@thoughtform.world
+			{contactEmail || 'Contact'}
 		</a>
 		<span class="flex items-center gap-1 dark:text-white">
 			<span>→</span>
@@ -23,9 +24,11 @@ import { Button } from './ui/button';
 			<Button client:load asChild variant="outline" className="border-primary-black px-4 py-2 text-sm uppercase hover:bg-primary-black hover:text-white dark:border-white/30 dark:text-white dark:hover:bg-white dark:hover:text-primary-black">
 				<a href="https://github.com/juuujuuu9" target="_blank" rel="noopener noreferrer">GitHub</a>
 			</Button>
+			{siteUrl && (
 			<Button client:load asChild variant="outline" className="border-primary-black px-4 py-2 text-sm uppercase hover:bg-primary-black hover:text-white dark:border-white/30 dark:text-white dark:hover:bg-white dark:hover:text-primary-black">
-				<a href="https://www.thoughtform.world" target="_blank" rel="noopener noreferrer">Corporate</a>
+				<a href={siteUrl} target="_blank" rel="noopener noreferrer">Portfolio</a>
 			</Button>
+			)}
 		</div>
 		<button
 			type="button"

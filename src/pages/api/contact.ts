@@ -24,9 +24,15 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
-    const to = import.meta.env.RESEND_TO_EMAIL || 'julian@thoughtform.world';
+    const to = import.meta.env.RESEND_TO_EMAIL;
+    if (!to) {
+      return new Response(
+        JSON.stringify({ error: 'Server misconfiguration: RESEND_TO_EMAIL not set' }),
+        { status: 500, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
     const fromEmail = import.meta.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev';
-    const fromName = import.meta.env.RESEND_FROM_NAME || 'Thoughtform Worldwide';
+    const fromName = import.meta.env.RESEND_FROM_NAME || 'Julian Hardee';
     const from = `${fromName} <${fromEmail}>`;
 
     const { data, error } = await resend.emails.send({

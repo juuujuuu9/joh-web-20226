@@ -1,160 +1,145 @@
 ---
-import '../styles/global.css';
-import favicon from '../assets/favicon.svg';
+import Layout from '../layouts/Layout.astro';
 import cvPdf from '../assets/Julian Hardee - 2026.pdf';
-import { HandModel } from '../components/HandModel';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import LenisInit from '../components/LenisInit.astro';
 ---
 
-<html lang="en" class="font-sans">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href={favicon.src} />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="generator" content={Astro.generator} />
-		<title>About — Thoughtform Worldwide</title>
-		<script is:inline>
-			const stored = localStorage.getItem('theme');
-			const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-			if (stored === 'dark' || (!stored && prefersDark)) document.documentElement.classList.add('dark');
-			else document.documentElement.classList.remove('dark');
-		</script>
-	</head>
-	<body class="flex min-h-dvh flex-col bg-light-bg pb-0 text-primary-black antialiased dark:bg-primary-black dark:text-white sm:pb-16">
-		<Header />
-		<div class="relative mx-auto w-full flex-1 px-4 pt-8 pb-2 lg:px-[6.5rem]">
+<Layout
+  title="About — Julian Hardee"
+  description="The intersection of creativity and code. Front-end engineer with 10 years experience—Astro, React, Svelte. Headless e-commerce, UX design, and 90+ Lighthouse scores."
+>
+  <Header />
+  <div class="relative mx-auto w-full flex-1 px-4 pt-8 pb-2 lg:px-[6.5rem]">
 
-			<main class="flex w-full min-w-0 flex-1 flex-col">
-				<!-- Section 1: full width, left-aligned -->
-				<div class="w-full">
-					<h1 class="font-display flex flex-col text-5xl font-bold uppercase leading-[0.9] sm:text-7xl md:text-8xl lg:text-[150px]">
-						<span>ABOUT ME</span>
-					</h1>
-					<p class="mt-4 max-w-7xl text-base md:text-lg leading-snug md:leading-relaxed text-primary-black/80 font-medium dark:text-white/80 sm:mt-0">
-						<em>The intersection of creativity & code.</em>
-					</p>
-					<a
-						href={cvPdf}
-						download="Julian-Hardee-2026.pdf"
-						class="mt-4 inline-flex items-center text-base font-medium text-primary-black underline underline-offset-4 transition-colors hover:text-primary-black/80 dark:text-white dark:hover:text-white/80"
-					>
-						Download CV
-					</a>
-				</div>
-				<!-- Section 2: full width, content right-aligned -->
-				<div class="w-full flex" style="padding-top: 100px">
-					<div class="max-w-2xl">
-						<h2 class="mb-3 text-base font-bold text-primary-black dark:text-white">Engineering with Intent.</h2>
-						<p class="mb-8 text-base leading-relaxed text-primary-black/90 dark:text-white/90">
-							I specialize in translating complex Figma designs into pixel-perfect, accessible web applications. With a technical stack centered on Astro, React, and Svelte, I build for performance—consistently achieving 90+ Lighthouse scores through modern build pipelines and asset optimization.
-						</p>
-						
-					</div>
-				</div>
-				<div class="w-full flex" style="">
-					<div class="max-w-2xl text-left">
-						<h2 class="mb-3 text-base font-bold text-primary-black dark:text-white">10 Years Experience.</h2>
-					</div>
-				</div>
-				<div class="w-full flex">
-					<div class="max-w-2xl text-left">
-						<p class="mb-8 text-base leading-relaxed text-primary-black/90 dark:text-white/90">
-							My recent certifications in AI and Data Science allow me to move beyond static design, creating data-driven user experiences. Currently at Times10, I engineer headless e-commerce solutions and custom storefronts that prioritize speed, scalability, and seamless content management.						</p>
-					</div>
-				</div>
+    <main class="flex w-full min-w-0 flex-1 flex-col">
+      <!-- Section 1: full width, left-aligned -->
+      <div class="w-full">
+        <h1 class="font-display flex flex-col text-5xl font-bold uppercase leading-[0.9] sm:text-7xl md:text-8xl lg:text-[150px]">
+          <span>ABOUT ME</span>
+        </h1>
+        <p class="mt-4 max-w-7xl text-base md:text-lg leading-snug md:leading-relaxed text-primary-black/80 font-medium dark:text-white/80 sm:mt-0">
+          <em>The intersection of creativity & code.</em>
+        </p>
+        <a
+          href={cvPdf}
+          download="Julian-Hardee-2026.pdf"
+          class="mt-4 inline-flex items-center text-base font-medium text-primary-black underline underline-offset-4 transition-colors hover:text-primary-black/80 dark:text-white dark:hover:text-white/80"
+        >
+          Download CV
+        </a>
+      </div>
+      <!-- Section 2: full width, content right-aligned -->
+      <div class="w-full flex" style="padding-top: 100px">
+        <div class="max-w-2xl">
+          <h2 class="mb-3 text-base font-bold text-primary-black dark:text-white">Engineering with Intent.</h2>
+          <p class="mb-8 text-base leading-relaxed text-primary-black/90 dark:text-white/90">
+            I specialize in translating complex Figma designs into pixel-perfect, accessible web applications. With a technical stack centered on Astro, React, and Svelte, I build for performance—consistently achieving 90+ Lighthouse scores through modern build pipelines and asset optimization.
+          </p>
 
-				<div class="w-full flex" style="">
-					<div class="max-w-2xl text-left">
-						<h2 class="mb-3 text-base font-bold text-primary-black dark:text-white">Services</h2>
-					</div>
-				</div>
-				<div class="w-full flex">
-					<div class="max-w-2xl text-left">
-						<ul class="mb-8 list-[square] space-y-1 pl-5 text-base leading-relaxed text-primary-black/90 dark:text-white/90">
-							<li>Website Applications</li>
-							<li>Headless CMS</li>
-							<li>E-commerce</li>
-							<li>Front-end Development</li>
-							<li>UX Design</li>
-						</ul>
-					</div>
-				</div>
+        </div>
+      </div>
+      <div class="w-full flex" style="">
+        <div class="max-w-2xl text-left">
+          <h2 class="mb-3 text-base font-bold text-primary-black dark:text-white">10 Years Experience.</h2>
+        </div>
+      </div>
+      <div class="w-full flex">
+        <div class="max-w-2xl text-left">
+          <p class="mb-8 text-base leading-relaxed text-primary-black/90 dark:text-white/90">
+            My recent certifications in AI and Data Science allow me to move beyond static design, creating data-driven user experiences. Currently at Times10, I engineer headless e-commerce solutions and custom storefronts that prioritize speed, scalability, and seamless content management.						</p>
+        </div>
+      </div>
 
-				<!-- VALUES section (documentation-style reference) -->
-				<section class="mt-0 mb-12 w-full max-w-6xl" aria-labelledby="values-heading">
-					<h2 id="values-heading" class="text-base font-bold leading-tight text-primary-black dark:text-white">
-						My Professional Values
-					</h2>
-					<div class="mt-8 overflow-hidden rounded-lg border border-border bg-muted/20 dark:bg-muted/10">
-						<!-- Header row -->
-						<div class="grid grid-cols-1 gap-x-8 gap-y-2 border-b border-border bg-muted/40 px-5 py-3 dark:bg-muted/20 lg:grid-cols-[minmax(12rem,1fr)_2fr]">
-							<span class="font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground">Name</span>
-							<span class="hidden font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground lg:block">Description</span>
-						</div>
-						<dl class="divide-y divide-border">
-							<div class="grid grid-cols-1 gap-x-8 gap-y-2 px-5 py-4 lg:grid-cols-[minmax(12rem,1fr)_2fr] lg:gap-12">
-								<dt class="flex flex-col gap-0.5">
-									<span class="font-mono text-xs text-muted-foreground" aria-hidden="true">values.excellence</span>
-									<span class="font-semibold text-primary-black dark:text-white">A Focus on Excellence</span>
-								</dt>
-								<dd class="text-base leading-relaxed text-primary-black/90 dark:text-white/90">
-									I've worked across a lot of industries and picked up what makes projects actually succeed. I keep up with what's new so the work stays sharp and relevant.
-								</dd>
-							</div>
-							<div class="grid grid-cols-1 gap-x-8 gap-y-2 px-5 py-4 lg:grid-cols-[minmax(12rem,1fr)_2fr] lg:gap-12">
-								<dt class="flex flex-col gap-0.5">
-									<span class="font-mono text-xs text-muted-foreground" aria-hidden="true">values.humble_expertise</span>
-									<span class="font-semibold text-primary-black dark:text-white">Humble Expertise — empowered by possibilities</span>
-								</dt>
-								<dd class="text-base leading-relaxed text-primary-black/90 dark:text-white/90">
-									I know my stuff, but I'd rather listen and collaborate than lecture. I'm here to help you win and build something you're proud of.
-								</dd>
-							</div>
-							<div class="grid grid-cols-1 gap-x-8 gap-y-2 px-5 py-4 lg:grid-cols-[minmax(12rem,1fr)_2fr] lg:gap-12">
-								<dt class="flex flex-col gap-0.5">
-									<span class="font-mono text-xs text-muted-foreground" aria-hidden="true">values.dedication</span>
-									<span class="font-semibold text-primary-black dark:text-white">Dedication to innovation and success</span>
-								</dt>
-								<dd class="text-base leading-relaxed text-primary-black/90 dark:text-white/90">
-									I care about making things that work and last. Straight talk, solid advice, and solutions that actually move the needle.
-								</dd>
-							</div>
-						</dl>
-					</div>
-					<div class="mt-8 flex flex-wrap gap-3">
-						<a
-							href="/work"
-							class="inline-block rounded-md bg-primary-black px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-primary-black/90 dark:bg-white dark:text-primary-black dark:hover:bg-white/90"
-						>
-							Check out my work
-						</a>
-						<a
-							href={cvPdf}
-							download="Julian-Hardee-2026.pdf"
-							class="inline-block rounded-md border border-primary-black px-6 py-3 text-sm font-medium text-primary-black transition-colors hover:bg-primary-black/5 dark:border-white dark:text-white dark:hover:bg-white/10"
-						>
-							Download CV
-						</a>
-					</div>
-				</section>
-			</main>
+      <div class="w-full flex" style="">
+        <div class="max-w-2xl text-left">
+          <h2 class="mb-3 text-base font-bold text-primary-black dark:text-white">Services</h2>
+        </div>
+      </div>
+      <div class="w-full flex">
+        <div class="max-w-2xl text-left">
+          <ul class="mb-8 list-[square] space-y-1 pl-5 text-base leading-relaxed text-primary-black/90 dark:text-white/90">
+            <li>Website Applications</li>
+            <li>Headless CMS</li>
+            <li>E-commerce</li>
+            <li>Front-end Development</li>
+            <li>UX Design</li>
+          </ul>
+        </div>
+      </div>
 
-			<!-- 3D hand: bottom-right 2/3 of viewport, drag to rotate -->
-			<!--
-			<div
-				class="pointer-events-none fixed bottom-0 right-0 z-0 h-[66.67dvh] w-[66.67vw] min-w-[280px]"
-				aria-hidden="true"
-			>
-				<div class="pointer-events-auto h-full w-full">
-					<HandModel client:load />
-				</div>
-			</div>
-			-->
-		</div>
-		<Footer />
-		<LenisInit />
-	</body>
-</html>
+      <!-- VALUES section (documentation-style reference) -->
+      <section class="mt-0 mb-12 w-full max-w-6xl" aria-labelledby="values-heading">
+        <h2 id="values-heading" class="text-base font-bold leading-tight text-primary-black dark:text-white">
+          My Professional Values
+        </h2>
+        <div class="mt-8 overflow-hidden rounded-lg border border-border bg-muted/20 dark:bg-muted/10">
+          <!-- Header row -->
+          <div class="grid grid-cols-1 gap-x-8 gap-y-2 border-b border-border bg-muted/40 px-5 py-3 dark:bg-muted/20 lg:grid-cols-[minmax(12rem,1fr)_2fr]">
+            <span class="font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground">Name</span>
+            <span class="hidden font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground lg:block">Description</span>
+          </div>
+          <dl class="divide-y divide-border">
+            <div class="grid grid-cols-1 gap-x-8 gap-y-2 px-5 py-4 lg:grid-cols-[minmax(12rem,1fr)_2fr] lg:gap-12">
+              <dt class="flex flex-col gap-0.5">
+                <span class="font-mono text-xs text-muted-foreground" aria-hidden="true">values.excellence</span>
+                <span class="font-semibold text-primary-black dark:text-white">A Focus on Excellence</span>
+              </dt>
+              <dd class="text-base leading-relaxed text-primary-black/90 dark:text-white/90">
+                I've worked across a lot of industries and picked up what makes projects actually succeed. I keep up with what's new so the work stays sharp and relevant.
+              </dd>
+            </div>
+            <div class="grid grid-cols-1 gap-x-8 gap-y-2 px-5 py-4 lg:grid-cols-[minmax(12rem,1fr)_2fr] lg:gap-12">
+              <dt class="flex flex-col gap-0.5">
+                <span class="font-mono text-xs text-muted-foreground" aria-hidden="true">values.humble_expertise</span>
+                <span class="font-semibold text-primary-black dark:text-white">Humble Expertise — empowered by possibilities</span>
+              </dt>
+              <dd class="text-base leading-relaxed text-primary-black/90 dark:text-white/90">
+                I know my stuff, but I'd rather listen and collaborate than lecture. I'm here to help you win and build something you're proud of.
+              </dd>
+            </div>
+            <div class="grid grid-cols-1 gap-x-8 gap-y-2 px-5 py-4 lg:grid-cols-[minmax(12rem,1fr)_2fr] lg:gap-12">
+              <dt class="flex flex-col gap-0.5">
+                <span class="font-mono text-xs text-muted-foreground" aria-hidden="true">values.dedication</span>
+                <span class="font-semibold text-primary-black dark:text-white">Dedication to innovation and success</span>
+              </dt>
+              <dd class="text-base leading-relaxed text-primary-black/90 dark:text-white/90">
+                I care about making things that work and last. Straight talk, solid advice, and solutions that actually move the needle.
+              </dd>
+            </div>
+          </dl>
+        </div>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a
+            href="/work"
+            class="inline-block rounded-md bg-primary-black px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-primary-black/90 dark:bg-white dark:text-primary-black dark:hover:bg-white/90"
+          >
+            Check out my work
+          </a>
+          <a
+            href={cvPdf}
+            download="Julian-Hardee-2026.pdf"
+            class="inline-block rounded-md border border-primary-black px-6 py-3 text-sm font-medium text-primary-black transition-colors hover:bg-primary-black/5 dark:border-white dark:text-white dark:hover:bg-white/10"
+          >
+            Download CV
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- 3D hand: bottom-right 2/3 of viewport, drag to rotate -->
+    <!--
+    <div
+      class="pointer-events-none fixed bottom-0 right-0 z-0 h-[66.67dvh] w-[66.67vw] min-w-[280px]"
+      aria-hidden="true"
+    >
+      <div class="pointer-events-auto h-full w-full">
+        <HandModel client:load />
+      </div>
+    </div>
+    -->
+  </div>
+  <Footer />
+  <LenisInit />
+</Layout>

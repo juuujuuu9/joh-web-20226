@@ -1,0 +1,72 @@
+---
+/**
+ * Shared layout with SEO and social share metadata.
+ * Set SITE_URL in .env for correct canonical and og:url.
+ */
+import '../styles/global.css';
+
+const siteName = 'Julian Hardee';
+const defaultDescription =
+  'Front-end Engineer specializing in headless commerce and bespoke digital experiences. High-performance, data-backed design.';
+
+interface Props {
+  title: string;
+  description?: string;
+  /** Full URL for OG/Twitter image (e.g. from content). Use path for site assets. */
+  image?: string;
+  imageAlt?: string;
+  /** Set true to hide from search engines (e.g. staging). */
+  noIndex?: boolean;
+}
+
+const { title, description = defaultDescription, image, imageAlt = title, noIndex = false } = Astro.props;
+
+const fullTitle = title;
+const canonicalURL = Astro.url.pathname && Astro.site
+  ? new URL(Astro.url.pathname, Astro.site).href
+  : undefined;
+
+/** Resolve image to absolute URL for OG/Twitter. */
+const imageURL = image
+  ? image.startsWith('http') ? image : new URL(image.startsWith('/') ? image : `/${image}`, Astro.site ?? Astro.url).href
+  : Astro.site ? new URL('/jh-logo.png', Astro.site).href : undefined;
+---
+
+<html lang="en" class="min-h-dvh font-sans sm:h-[100dvh]">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    {canonicalURL && <link rel="canonical" href={canonicalURL} />}
+    {noIndex && <meta name="robots" content="noindex, nofollow" />}
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    {canonicalURL && <meta property="og:url" content={canonicalURL} />}
+    <meta property="og:site_name" content={siteName} />
+    {imageURL && <meta property="og:image" content={imageURL} />}
+    {imageURL && <meta property="og:image:alt" content={imageAlt} />}
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    {imageURL && <meta name="twitter:image" content={imageURL} />}
+    {imageURL && <meta name="twitter:image:alt" content={imageAlt} />}
+
+    <script is:inline>
+      const stored = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (stored === 'dark' || (!stored && prefersDark)) document.documentElement.classList.add('dark');
+      else document.documentElement.classList.remove('dark');
+    </script>
+  </head>
+  <body class="flex min-h-dvh flex-col bg-light-bg pb-0 text-primary-black antialiased dark:bg-primary-black dark:text-white sm:pb-16">
+    <slot />
+  </body>
+</html>

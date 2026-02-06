@@ -1,77 +1,60 @@
 ---
-import '../styles/global.css';
-import favicon from '../assets/favicon.svg';
+import Layout from '../layouts/Layout.astro';
 import { HandModel } from '../components/HandModel';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import LenisInit from '../components/LenisInit.astro';
 ---
 
-<html lang="en" class="min-h-dvh font-sans sm:h-[100dvh]">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href={favicon.src} />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Thoughtform Worldwide</title>
-		<script is:inline>
-			const stored = localStorage.getItem('theme');
-			const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-			if (stored === 'dark' || (!stored && prefersDark)) document.documentElement.classList.add('dark');
-			else document.documentElement.classList.remove('dark');
-		</script>
-	</head>
-	<body class="flex min-h-dvh flex-col bg-light-bg pb-0 text-primary-black antialiased dark:bg-primary-black dark:text-white sm:pb-16">
-		<Header />
-		<div class="relative mx-auto flex min-h-0 w-full flex-1 flex-col px-4 pt-8 pb-10 lg:px-[6.5rem]">
+<Layout
+  title="Julian Hardee — Front-end Engineer"
+  description="Front-end Engineer specializing in headless commerce and bespoke digital experiences. High-performance, data-backed design. Currently building for consumer brands at Times10."
+>
+  <Header />
+  <div class="relative mx-auto flex min-h-0 w-full flex-1 flex-col px-4 pt-8 pb-10 lg:px-[6.5rem]">
 
-			<!-- Main content: full height between header and footer -->
-			<main class="flex min-h-0 flex-1 flex-col">
-				<div class="grid gap-12 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-16">
-					<div>
-						<h1 class="font-display flex flex-col text-5xl font-bold uppercase leading-[0.9] sm:text-7xl md:text-8xl lg:text-[150px]">
-							<span>HIGH-PERFORMANCE.</span>
-							<span>DATA-BACKED DESIGN.</span>
-						</h1>
-						<p class="mt-4 max-w-7xl text-base md:text-lg leading-snug md:leading-relaxed text-primary-black/80 font-medium dark:text-white/80 sm:mt-0">
-							Front-end Engineer specializing in headless commerce and bespoke digital experiences.<br />
-							Currently building for consumer brands at Times10.
-						</p>
-					</div>
-				</div>
+    <!-- Main content: full height between header and footer -->
+    <main class="flex min-h-0 flex-1 flex-col">
+      <div class="grid gap-12 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-16">
+        <div>
+          <h1 class="font-display flex flex-col text-5xl font-bold uppercase leading-[0.9] sm:text-7xl md:text-8xl lg:text-[150px]">
+            <span>HIGH-PERFORMANCE.</span>
+            <span>DATA-BACKED DESIGN.</span>
+          </h1>
+          <p class="mt-4 max-w-7xl text-base md:text-lg leading-snug md:leading-relaxed text-primary-black/80 font-medium dark:text-white/80 sm:mt-0">
+            Front-end Engineer specializing in headless commerce and bespoke digital experiences.<br />
+            Currently building for consumer brands at Times10.
+          </p>
+        </div>
+      </div>
 
-				<div class="min-h-0 flex-1" aria-hidden="true"></div>
+      <div class="min-h-0 flex-1" aria-hidden="true"></div>
 
-				<div class="max-w-2xl mb-3 mt-12 sm:mt-0">
-					<!-- <h2 class="mb-4 text-xl font-bold">
-						We built a studio that delivers the creative power your brand and team needs.
-					</h2> -->
-					<p class="mb-8 leading-relaxed text-primary-black/90 dark:text-white/90">
-						Hi, I’m a <em>designgineer</em> - skilled at translating complex design concepts into high-performance, accessible web applications. With a technical focus on Astro, React, Svelte, & Tailwind CSS I build scalable headless commerce solutions and custom storefronts that prioritize speed and data-driven user experiences. My approach combines a decade of design foundation with modern engineering—consistently delivering 90+ Lighthouse scores through optimized build pipelines and asset management.
-					</p>
-					<a
-						href="/about"
-						class="inline-block rounded-md bg-primary-black px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-primary-black/90 dark:bg-white dark:text-primary-black dark:hover:bg-white/90"
-					>
-						About me
-					</a>
-				</div>
-			</main>
+      <div class="max-w-2xl mb-3 mt-12 sm:mt-0">
+        <p class="mb-8 leading-relaxed text-primary-black/90 dark:text-white/90">
+          Hi, I'm a <em>designgineer</em> - skilled at translating complex design concepts into high-performance, accessible web applications. With a technical focus on Astro, React, Svelte, & Tailwind CSS I build scalable headless commerce solutions and custom storefronts that prioritize speed and data-driven user experiences. My approach combines a decade of design foundation with modern engineering—consistently delivering 90+ Lighthouse scores through optimized build pipelines and asset management.
+        </p>
+        <a
+          href="/about"
+          class="inline-block rounded-md bg-primary-black px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-primary-black/90 dark:bg-white dark:text-primary-black dark:hover:bg-white/90"
+        >
+          About me
+        </a>
+      </div>
+    </main>
 
-			<!-- 3D hand: bottom-right 2/3 of viewport, drag to rotate -->
-			<!--
-			<div
-				class="pointer-events-none fixed bottom-0 right-0 z-0 h-[66.67dvh] w-[66.67vw] min-w-[280px]"
-				aria-hidden="true"
-			>
-				<div class="pointer-events-auto h-full w-full">
-					<HandModel client:load />
-				</div>
-			</div>
-			-->
-		</div>
-		<Footer />
-		<LenisInit />
-	</body>
-</html>
+    <!-- 3D hand: bottom-right 2/3 of viewport, drag to rotate -->
+    <!--
+    <div
+      class="pointer-events-none fixed bottom-0 right-0 z-0 h-[66.67dvh] w-[66.67vw] min-w-[280px]"
+      aria-hidden="true"
+    >
+      <div class="pointer-events-auto h-full w-full">
+        <HandModel client:load />
+      </div>
+    </div>
+    -->
+  </div>
+  <Footer />
+  <LenisInit />
+</Layout>

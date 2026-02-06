@@ -1,50 +1,36 @@
 ---
-import '../styles/global.css';
-import favicon from '../assets/favicon.svg';
+import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import LenisInit from '../components/LenisInit.astro';
 import { ContactForm } from '../components/ContactForm';
 ---
 
-<html lang="en" class="font-sans">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href={favicon.src} />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Contact — Thoughtform Worldwide</title>
-		<script is:inline>
-			const stored = localStorage.getItem('theme');
-			const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-			if (stored === 'dark' || (!stored && prefersDark)) document.documentElement.classList.add('dark');
-			else document.documentElement.classList.remove('dark');
-		</script>
-	</head>
-	<body class="flex min-h-dvh flex-col bg-light-bg pb-0 text-primary-black antialiased dark:bg-primary-black dark:text-white sm:pb-16">
-		<Header />
-		<div class="relative mx-auto w-full flex-1 px-4 pt-8 pb-2 lg:px-[6.5rem]">
+<Layout
+  title="Contact — Julian Hardee"
+  description="Get in touch for questions, professional inquiries, or more information. I'll get back to you promptly."
+>
+  <Header />
+  <div class="relative mx-auto w-full flex-1 px-4 pt-8 pb-2 lg:px-[6.5rem]">
 
-			<main class="flex w-full min-w-0 flex-1 flex-col">
-				<!-- Section 1: header and subheader -->
-				<div class="w-full">
-					<h1 class="font-display flex flex-col text-5xl font-bold uppercase leading-[0.9] sm:text-7xl md:text-8xl lg:text-[150px]">
-						<span>CONTACT</span>
-					</h1>
-					<p class="mt-4 max-w-2xl text-base md:text-lg leading-snug md:leading-relaxed text-primary-black/80 font-medium dark:text-white/80 sm:mt-0">
-						I'd love to hear from you! For questions, professional inquiries, or more information, contact me via the form. I'll get back to you promptly.
-					</p>
-				</div>
+    <main class="flex w-full min-w-0 flex-1 flex-col">
+      <!-- Section 1: header and subheader -->
+      <div class="w-full">
+        <h1 class="font-display flex flex-col text-5xl font-bold uppercase leading-[0.9] sm:text-7xl md:text-8xl lg:text-[150px]">
+          <span>CONTACT</span>
+        </h1>
+        <p class="mt-4 max-w-2xl text-base md:text-lg leading-snug md:leading-relaxed text-primary-black/80 font-medium dark:text-white/80 sm:mt-0">
+          I'd love to hear from you! For questions, professional inquiries, or more information, contact me via the form. I'll get back to you promptly.
+        </p>
+      </div>
 
-				<!-- Contact form -->
-				<section class="w-full pb-24" style="padding-top: 100px" aria-labelledby="contact-form-heading">
-					<h2 id="contact-form-heading" class="sr-only">Contact form</h2>
-					<ContactForm client:load />
-				</section>
-			</main>
-		</div>
-		<Footer />
-		<LenisInit />
-	</body>
-</html>
+      <!-- Contact form -->
+      <section class="w-full pb-24" style="padding-top: 100px" aria-labelledby="contact-form-heading">
+        <h2 id="contact-form-heading" class="sr-only">Contact form</h2>
+        <ContactForm client:load />
+      </section>
+    </main>
+  </div>
+  <Footer />
+  <LenisInit />
+</Layout>

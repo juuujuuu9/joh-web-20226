@@ -7,6 +7,7 @@ import vercel from '@astrojs/vercel';
 
 // https://astro.build/config
 export default defineConfig({
+  site: process.env.SITE_URL || 'https://julianhardee.com',
   output: 'server',
   adapter: vercel(),
   vite: {

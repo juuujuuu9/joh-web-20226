@@ -13,6 +13,8 @@ const { marqueeItems = [
 	'E-commerce Solutions',
 ] } = Astro.props;
 
+const contactEmail = import.meta.env.RESEND_TO_EMAIL || '';
+
 const navLinks = [
 	{ href: '/about', label: 'About' },
 	{ href: '/work', label: 'Work' },
@@ -114,12 +116,12 @@ const navLinks = [
 				GitHub
 			</a>
 <a
-					href="mailto:julian@thoughtform.world"
+					href={contactEmail ? `mailto:${contactEmail}` : '#'}
 					class="flex items-center gap-1 text-base font-medium hover:underline underline-offset-4"
 					data-menu-link
 				>
 					<span>→</span>
-					julian@thoughtform.world
+					{contactEmail || 'Contact'}
 				</a>
 		</div>
 	</div>
