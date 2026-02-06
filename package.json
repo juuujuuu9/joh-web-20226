@@ -13,6 +13,7 @@
     "@base-ui/react": "^1.1.0",
     "@fontsource-variable/dm-sans": "^5.2.8",
     "@fontsource-variable/manrope": "^5.2.8",
+    "@fontsource/bebas-neue": "^5.2.7",
     "@remixicon/react": "^4.9.0",
     "@tailwindcss/vite": "^4.1.18",
     "@types/react": "^19.2.10",

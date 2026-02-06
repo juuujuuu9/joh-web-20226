@@ -4,6 +4,7 @@
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/dm-sans";
 @import "@fontsource-variable/manrope";
+@import "@fontsource/bebas-neue";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -26,8 +27,8 @@
 }
 
 @theme {
-  --font-display: "Thunder", sans-serif;
-  --font-sans: "Manrope", sans-serif;
+  --font-display: "Bebas Neue", sans-serif;
+  --font-sans: "Manrope Variable", sans-serif;
   --color-primary-black: #09090d;
   /* Light mode page background (cooler than warm #FBF8F4) */
   --color-light-bg: #f7f8fb;
@@ -105,8 +106,8 @@
 }
 
 @theme inline {
-  /* Fallback to Manrope (loaded above) when local Neue Haas files are missing (e.g. production) */
-  --font-sans: 'Neue Haas Grotesque', 'Manrope', sans-serif;
+  /* Fallback to Manrope Variable when local Neue Haas files are missing */
+  --font-sans: 'Neue Haas Grotesque', 'Manrope Variable', sans-serif;
   --animate-marquee: marquee 25s linear infinite;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
