@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Thunder:wght@100..900&display=swap");
+/* Google Fonts (Manrope, Thunder) loaded via <link> in head for reliable mobile loading - @import is render-blocking and can fail on mobile */
 @import "tailwindcss";
 @source "../**/*.{html,astro,tsx,jsx,ts,js}";
 @import "tw-animate-css";

@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import favicon from '../assets/favicon.svg';
+import FontLinks from '../components/FontLinks.astro';
 import cvPdf from '../assets/Julian Hardee - 2026.pdf';
 import { HandModel } from '../components/HandModel';
 import Header from '../components/Header.astro';
@@ -11,6 +12,7 @@ import LenisInit from '../components/LenisInit.astro';
 <html lang="en" class="font-sans">
 	<head>
 		<meta charset="utf-8" />
+		<FontLinks />
 		<link rel="icon" type="image/svg+xml" href={favicon.src} />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />

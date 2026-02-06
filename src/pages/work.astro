@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import favicon from '../assets/favicon.svg';
+import FontLinks from '../components/FontLinks.astro';
 import { getCollection } from 'astro:content';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -22,6 +23,7 @@ const caseStudies = entries.map((entry) => ({
 <html lang="en" class="font-sans">
 	<head>
 		<meta charset="utf-8" />
+		<FontLinks />
 		<link rel="icon" type="image/svg+xml" href={favicon.src} />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -45,13 +47,13 @@ const caseStudies = entries.map((entry) => ({
 						<span>WORK</span>
 					</h1>
 					<p class="mt-0 max-w-2xl text-lg leading-relaxed text-primary-black/80 font-medium dark:text-white/80">
-						<em>I align with forward-thinking businesses who are transforming industries. From startups to established businesses, I create tailored web solutions to help them scale, attract customers, and thrive in their markets.</em>
+						I align with forward-thinking  businesses who are transforming industries. From startups to established businesses, I create tailored web solutions to help them scale, attract customers, and thrive in their markets.
 					</p>
 				</div>
 
 				<!-- Selected Work: project table -->
 				<section class="w-full max-w-6xl pb-24" aria-labelledby="work-heading" style="padding-top: 100px">
-					<h2 id="work-heading" class="mb-8 font-bold text-[2rem] leading-tight text-primary-black dark:text-white">
+					<h2 id="work-heading" class="mb-8 font-bold text-[1.5rem] leading-tight text-primary-black dark:text-white">
 						Case Studies
 					</h2>
 					<div>
