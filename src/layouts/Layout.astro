@@ -22,14 +22,20 @@ interface Props {
 const { title, description = defaultDescription, image, imageAlt = title, noIndex = false } = Astro.props;
 
 const fullTitle = title;
-const canonicalURL = Astro.url.pathname && Astro.site
-  ? new URL(Astro.url.pathname, Astro.site).href
-  : undefined;
+/** Base URL for absolute links (required for iPhone/iMessage previews). Set SITE_URL in production. */
+const baseURL = Astro.site || Astro.url.origin;
+const canonicalURL = new URL(Astro.url.pathname || '/', baseURL).href;
 
-/** Resolve image to absolute URL for OG/Twitter. */
+/** Resolve image to absolute URL for OG/Twitter. Must be absolute for iOS link previews. */
 const imageURL = image
-  ? image.startsWith('http') ? image : new URL(image.startsWith('/') ? image : `/${image}`, Astro.site ?? Astro.url).href
-  : Astro.site ? new URL('/jh-logo.png', Astro.site).href : undefined;
+  ? image.startsWith('http')
+    ? image
+    : new URL(image.startsWith('/') ? image : `/${image}`, baseURL).href
+  : new URL('/og-default.png', baseURL).href;
+
+/** Recommended OG image size for link previews (iPhone, iMessage, etc.). */
+const ogImageWidth = 1200;
+const ogImageHeight = 630;
 ---
 
 <html lang="en" class="min-h-dvh font-sans sm:h-[100dvh]">
@@ -43,21 +49,35 @@ const imageURL = image
     {canonicalURL && <link rel="canonical" href={canonicalURL} />}
     {noIndex && <meta name="robots" content="noindex, nofollow" />}
 
-    <!-- Open Graph -->
+    <!-- Open Graph (required for iPhone/iMessage link previews; use absolute URLs) -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
-    {canonicalURL && <meta property="og:url" content={canonicalURL} />}
+    <meta property="og:url" content={canonicalURL} />
     <meta property="og:site_name" content={siteName} />
-    {imageURL && <meta property="og:image" content={imageURL} />}
-    {imageURL && <meta property="og:image:alt" content={imageAlt} />}
+    <meta property="og:image" content={imageURL} />
+    <meta property="og:image:secure_url" content={imageURL} />
+    <meta property="og:image:width" content={String(ogImageWidth)} />
+    <meta property="og:image:height" content={String(ogImageHeight)} />
+    <meta property="og:image:alt" content={imageAlt} />
+    <meta property="og:locale" content="en_US" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={description} />
-    {imageURL && <meta name="twitter:image" content={imageURL} />}
-    {imageURL && <meta name="twitter:image:alt" content={imageAlt} />}
+    <meta name="twitter:image" content={imageURL} />
+    <meta name="twitter:image:alt" content={imageAlt} />
+
+    <!-- JSON-LD (helps iOS and other crawlers with link previews) -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      name: fullTitle,
+      description,
+      url: canonicalURL,
+      image: imageURL,
+    })} />
 
     <script is:inline>
       const stored = localStorage.getItem('theme');
