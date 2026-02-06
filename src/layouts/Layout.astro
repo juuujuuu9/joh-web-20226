@@ -41,7 +41,11 @@ const ogImageHeight = 630;
 <html lang="en" class="min-h-dvh font-sans sm:h-[100dvh]">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
+    <!-- Favicons (absolute URLs for link preview crawlers) -->
+    <link rel="icon" type="image/x-icon" href={new URL('/favicon.ico', baseURL).href} />
+    <link rel="icon" type="image/png" href={new URL('/favicon.png', baseURL).href} />
+    <link rel="icon" type="image/svg+xml" href={new URL('/favicon.svg', baseURL).href} />
+    <link rel="apple-touch-icon" href={new URL('/favicon.png', baseURL).href} />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <title>{fullTitle}</title>
