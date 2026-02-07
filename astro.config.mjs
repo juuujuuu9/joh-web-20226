@@ -6,8 +6,11 @@ import react from '@astrojs/react';
 import vercel from '@astrojs/vercel';
 
 // https://astro.build/config
+const siteUrl = process.env.SITE_URL?.trim();
+const validSite = siteUrl?.startsWith('http') ? siteUrl : 'https://julianhardee.com';
+
 export default defineConfig({
-  site: process.env.SITE_URL || 'https://julianhardee.com',
+  site: validSite,
   output: 'server',
   adapter: vercel(),
   vite: {
