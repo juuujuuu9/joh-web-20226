@@ -26,8 +26,8 @@ const caseStudies = entries.map((entry) => ({
   <div class="relative mx-auto w-full flex-1 px-4 pt-8 pb-2 lg:px-[6.5rem]">
 
     <main class="flex w-full min-w-0 flex-1 flex-col">
-      <!-- Section 1: full width, left-aligned -->
-      <div class="w-full">
+      <!-- Section 1: display text -->
+      <div class="page-hero w-full">
         <h1 class="font-display flex flex-col text-5xl font-bold uppercase leading-[0.9] sm:text-7xl md:text-8xl lg:text-[150px]">
           <span>WORK</span>
         </h1>
@@ -37,6 +37,7 @@ const caseStudies = entries.map((entry) => ({
       </div>
 
       <!-- Selected Work: project table -->
+      <div class="page-content w-full flex flex-col">
       <section class="w-full max-w-6xl pb-24" aria-labelledby="work-heading" style="padding-top: 100px">
         <h2 id="work-heading" class="mb-8 font-bold text-[1.5rem] leading-tight text-primary-black dark:text-white">
           Case Studies
@@ -103,6 +104,7 @@ const caseStudies = entries.map((entry) => ({
           ))}
         </div>
       </section>
+      </div>
     </main>
 
     <!-- 3D hand: bottom-right 2/3 of viewport, drag to rotate -->

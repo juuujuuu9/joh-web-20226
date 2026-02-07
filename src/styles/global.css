@@ -158,6 +158,26 @@
   }
 }
 
+/* Page load: display text fades in first, then rest of page a split second later */
+@keyframes page-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.page-hero {
+  opacity: 0;
+  animation: page-fade-in 0.4s ease-out forwards;
+}
+
+.page-content {
+  opacity: 0;
+  animation: page-fade-in 0.45s ease-out 0.25s forwards;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

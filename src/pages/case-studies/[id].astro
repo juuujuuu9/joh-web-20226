@@ -26,11 +26,10 @@ const { data } = entry;
   <Header />
   <div class="relative mx-auto w-full flex-1 px-4 pt-8 pb-2 lg:px-[6.5rem]">
     <main class="mx-auto max-w-4xl">
-      <a href="/work" class="mb-8 inline-block text-sm font-medium text-muted-foreground underline-offset-4 hover:underline">
-        ← Back to Work
-      </a>
-
-      <article>
+      <div class="page-hero">
+        <a href="/work" class="mb-8 inline-block text-sm font-medium text-muted-foreground underline-offset-4 hover:underline">
+          ← Back to Work
+        </a>
         <header class="mb-12">
           <h1 class="font-display text-4xl font-bold uppercase leading-[0.95] tracking-tight text-primary-black dark:text-white md:text-5xl">
             {data.title}
@@ -53,7 +52,10 @@ const { data } = entry;
             </div>
           </dl>
         </header>
+      </div>
 
+      <article>
+      <div class="page-content">
         <img
           src={data.heroImage}
           alt={`${data.title} hero`}
@@ -113,6 +115,7 @@ const { data } = entry;
             <p class="font-medium">{data.servicesProvided.join(', ')}</p>
           </div>
         </footer>
+      </div>
       </article>
     </main>
   </div>

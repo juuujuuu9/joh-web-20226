@@ -14,8 +14,8 @@ import LenisInit from '../components/LenisInit.astro';
   <div class="relative mx-auto w-full flex-1 px-4 pt-8 pb-2 lg:px-[6.5rem]">
 
     <main class="flex w-full min-w-0 flex-1 flex-col">
-      <!-- Section 1: full width, left-aligned -->
-      <div class="w-full">
+      <!-- Section 1: full width, left-aligned (display text) -->
+      <div class="page-hero w-full">
         <h1 class="font-display flex flex-col text-5xl font-bold uppercase leading-[0.9] sm:text-7xl md:text-8xl lg:text-[150px]">
           <span>ABOUT ME</span>
         </h1>
@@ -30,7 +30,8 @@ import LenisInit from '../components/LenisInit.astro';
           Download CV
         </a>
       </div>
-      <!-- Section 2: full width, content right-aligned -->
+      <!-- Section 2+: rest of page -->
+      <div class="page-content w-full flex flex-col">
       <div class="w-full flex" style="padding-top: 100px">
         <div class="max-w-2xl">
           <h2 class="mb-3 text-base font-bold text-primary-black dark:text-white">Engineering with Intent.</h2>
@@ -126,6 +127,7 @@ import LenisInit from '../components/LenisInit.astro';
           </a>
         </div>
       </section>
+      </div>
     </main>
 
     <!-- 3D hand: bottom-right 2/3 of viewport, drag to rotate -->
