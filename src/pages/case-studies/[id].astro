@@ -14,18 +14,23 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const { data } = entry;
+if (!entry) {
+  Astro.response.status = 404;
+}
+const data = entry?.data;
 ---
 
 <Layout
-  title={`${data.title} — Julian Hardee`}
-  description={data.tagline}
-  image={data.heroImage}
-  imageAlt={data.title}
+  title={data ? `${data.title} — Julian Hardee` : 'Not Found — Julian Hardee'}
+  description={data?.tagline ?? 'Case study not found'}
+  image={data?.heroImage}
+  imageAlt={data?.title ?? 'Case study'}
 >
   <Header />
   <div class="relative mx-auto w-full flex-1 px-4 pt-8 pb-2 lg:px-[6.5rem]">
     <main class="mx-auto max-w-4xl">
+      {entry && data ? (
+      <>
       <div class="page-hero">
         <a href="/work" class="mb-8 inline-block text-sm font-medium text-muted-foreground underline-offset-4 hover:underline">
           ← Back to Work
@@ -117,6 +122,20 @@ const { data } = entry;
         </footer>
       </div>
       </article>
+      </>
+      ) : (
+      <div class="page-hero">
+        <a href="/work" class="mb-8 inline-block text-sm font-medium text-muted-foreground underline-offset-4 hover:underline">
+          ← Back to Work
+        </a>
+        <h1 class="font-display text-4xl font-bold uppercase leading-[0.95] tracking-tight text-primary-black dark:text-white md:text-5xl">
+          Case study not found
+        </h1>
+        <p class="mt-2 text-base text-primary-black/80 dark:text-white/80">
+          This case study doesn't exist or has been removed.
+        </p>
+      </div>
+      )}
     </main>
   </div>
   <Footer />
