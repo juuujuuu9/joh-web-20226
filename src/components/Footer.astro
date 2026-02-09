@@ -2,7 +2,6 @@
 import { Button } from './ui/button';
 
 const contactEmail = import.meta.env.RESEND_TO_EMAIL || '';
-const siteUrl = import.meta.env.SITE_URL || '';
 ---
 
 <footer class="static flex min-h-16 flex-col items-center justify-center gap-3 border-t border-primary-black/10 bg-light-bg px-4 py-4 dark:border-white/10 dark:bg-primary-black sm:fixed sm:bottom-0 sm:left-0 sm:right-0 sm:z-10 sm:h-16 sm:flex-row sm:justify-between sm:py-0">
@@ -24,11 +23,6 @@ const siteUrl = import.meta.env.SITE_URL || '';
 			<Button client:load asChild variant="outline" className="border-primary-black px-4 py-2 text-sm uppercase hover:bg-primary-black hover:text-white dark:border-white/30 dark:text-white dark:hover:bg-white dark:hover:text-primary-black">
 				<a href="https://github.com/juuujuuu9" target="_blank" rel="noopener noreferrer">GitHub</a>
 			</Button>
-			{siteUrl && (
-			<Button client:load asChild variant="outline" className="border-primary-black px-4 py-2 text-sm uppercase hover:bg-primary-black hover:text-white dark:border-white/30 dark:text-white dark:hover:bg-white dark:hover:text-primary-black">
-				<a href={siteUrl} target="_blank" rel="noopener noreferrer">Portfolio</a>
-			</Button>
-			)}
 		</div>
 		<button
 			type="button"
