@@ -88,6 +88,9 @@ const ogImageHeight = 630;
       if (stored === 'dark' || (!stored && prefersDark)) document.documentElement.classList.add('dark');
       else document.documentElement.classList.remove('dark');
     </script>
+
+    <!-- Umami analytics -->
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="ede829b9-c66c-459b-a121-212306b51323"></script>
   </head>
   <body class="flex min-h-dvh flex-col bg-light-bg pb-0 text-primary-black antialiased dark:bg-primary-black dark:text-white sm:pb-16">
     <slot />
