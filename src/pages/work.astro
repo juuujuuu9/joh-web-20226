@@ -4,6 +4,7 @@ import { getCollection } from 'astro:content';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import LenisInit from '../components/LenisInit.astro';
+import cvPdf from '../assets/Julian Hardee - 2026.pdf';
 
 const contactEmail = import.meta.env.RESEND_TO_EMAIL || '';
 const entries = await getCollection('caseStudies', ({ data }) => data.draft !== true);
@@ -49,8 +50,15 @@ const caseStudies = entries.map((entry) => ({
             WORKING ON IT!
           </h3>
           <p class="mt-4 max-w-xl text-base leading-relaxed text-primary-black/80 dark:text-white/80">
-            This site is an ongoing work. Case studies are coming soon—but if in the meantime you'd like specific details, please reach out:
+            This site is an ongoing work. Case studies are coming soon—but if in the meantime you'd like specific details, download my CV for project details and live links to my works:
           </p>
+          <a
+            href={cvPdf}
+            download="Julian-Hardee-2026.pdf"
+            class="mt-4 mb-8 inline-block rounded-md border border-primary-black px-6 py-3 text-sm font-medium text-primary-black transition-colors hover:bg-primary-black/5 dark:border-white dark:text-white dark:hover:bg-white/10"
+          >
+            Download CV
+          </a>
           {contactEmail ? (
             <a href={`mailto:${contactEmail}`} class="mt-3 flex items-center gap-1 font-medium text-primary-black underline underline-offset-4 dark:text-white">
               <span>→</span>
